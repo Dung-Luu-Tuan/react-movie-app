@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 
 const MovieComponent = (props) => {
-  // console.log("Movie: " , props.movie)
   const { title, release_date, id, poster_path } = props.movie;
-
   return (
     <div
       className="searchMovieContainer"

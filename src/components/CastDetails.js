@@ -32,7 +32,7 @@ const CastDetails = () => {
               <dt>Job</dt>
               <dd className="light-text">{castDetail?.known_for_department}</dd>
               <dt>Gender</dt>
-              {castDetail?.gender == "1" ? (
+              {castDetail?.gender === "1" ? (
                 <dd className="light-text">Women</dd>
               ) : (
                 <dd className="light-text">Men</dd>

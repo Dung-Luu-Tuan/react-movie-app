@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import errorImgCast from "../picture/error_img_cast.jpg";
 
 const MovieCastComponent = (props) => {
-  console.log("props: ", props?.movieCast);
   return (
     <>
       <Swiper
