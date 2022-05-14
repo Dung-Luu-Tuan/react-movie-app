@@ -1,98 +1,149 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import React from "react";
-import { useParams } from "react-router-dom";
+import styled from "styled-components";
 import { API_KEY } from "../App";
-import MovieCastsComponent from "./MovieCastsComponent";
-import MovieTrailer from "./MovieTrailer";
-import Writer from "./Writers";
-import Directors from "./Directors";
-import ErrorImg from "../picture/error_img_cast.jpg";
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 20px 30px;
+  justify-content: center;
+  border-bottom: 1px solid lightgray;
+  & h3 {
+    color: #fff;
+    font-weight: 400;
+  }
+`;
 
+const CoverImage = styled.img`
+  height: 100%;
+  object-fit: cover;
+`;
+
+const InfoColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 30px;
+`;
+
+const MovieName = styled.span`
+  font-size: 2.5rem;
+  font-weight: 800;
+  font-family: "Merriweather",serif;
+  color: #dbdbdb;
+  margin: 15px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  margin-bottom: 3rem;
+`;
+const MovieInfo = styled.span`
+  font-style: 16px;
+  font-weight: 500;
+  color: #dbdbdb;
+  overflow: hidden;
+  margin: 4px 0;
+  text-transform: capitalize;
+  text-overflow: ellipsis;
+  & span {
+    /* opacity: 0.6; */
+    color: #7a7a7a;
+    font-weight: 100;
+  }
+`;
+
+const Close = styled.span`
+  overflow: hidden;
+  position: relative;
+  border: none;
+  padding: 0;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background: transparent;
+  color: #1da1f2;
+  font: inherit;
+  text-indent: 100%;
+  cursor: pointer;
+
+  &:focus {
+    outline: solid 0 transparent;
+    box-shadow: 0 0 0 2px #8ed0f9;
+  }
+
+  &:hover {
+    background: rgba(29, 161, 142, 0.1);
+  }
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 15%;
+    left: calc(50% - 0.0625em);
+    width: 0.125em;
+    height: 70%;
+    border-radius: 0.125em;
+    transform: rotate(45deg);
+    background: currentcolor;
+    content: "";
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
+`;
 const MovieInfoComponent = (props) => {
   const [movieInfo, setMovieInfo] = useState();
-  const [movieCast, setMovieCast] = useState();
-  // const [movieTrailer, setMovieTrailer] = useState();
-  // const { selectedMovie } = props;
-  const { movieId } = useParams();
-
+  const { selectedMovie } = props;
   useEffect(() => {
     axios
-      .get(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&append_to_response=videos`
-      )
+      .get(`https://www.omdbapi.com/?i=${selectedMovie}&apikey=${API_KEY}`)
       .then((response) => setMovieInfo(response.data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/${movieId}/casts?api_key=${API_KEY}`
-      )
-      .then((response) => setMovieCast(response.data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selectedMovie]);
   return (
-    <React.Fragment>
-      <div
-        className="background-section"
-        style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieInfo?.backdrop_path})`,
-        }}
-      ></div>
+    <Container>
       {movieInfo ? (
         <>
-          <div className="content-section">
-            <img
-              id="poster"
-              src={
-                movieInfo?.poster_path
-                  ? "https://image.tmdb.org/t/p/original/" +
-                    movieInfo?.poster_path
-                  : ErrorImg
-              }
-              alt=""
-            />
-            <div className="infoColumn">
-              <div id="movieName">{movieInfo?.original_title}</div>
-
-              <div className="movieInfo">
-                Director :<Directors directors={movieCast?.crew}></Directors>
-              </div>
-
-              <div className="movieInfo">
-                Writers :<Writer writer={movieCast?.crew}></Writer>
-              </div>
-
-              <div className="movieInfo">
-                Runtime : <span>{movieInfo?.runtime} minutes</span>
-              </div>
-
-              <div className="movieInfo">
-                Release Date : <span>{movieInfo?.release_date}</span>
-              </div>
-
-              <div id="overview">{movieInfo?.overview}</div>
-
-              <div className="movieInfo">CAST</div>
-              <div className="castList">
-                <MovieCastsComponent
-                  movieCast={movieCast?.cast}
-                ></MovieCastsComponent>
-              </div>
-
-              <div className="movieInfo">TRAILER </div>
-              <MovieTrailer
-                movieTrailer={movieInfo?.videos.results}
-              ></MovieTrailer>
-            </div>
-          </div>
+          <CoverImage src={movieInfo?.Poster} />
+          <InfoColumn>
+            <MovieName>Movie: {movieInfo?.Title}</MovieName>
+            <MovieInfo>
+              IMDB Rating: <span>{movieInfo?.imdbRating}</span>
+            </MovieInfo>
+            <MovieInfo>
+              Language: <span>{movieInfo?.Language}</span>
+            </MovieInfo>
+            <MovieInfo>
+              Rated: <span>{movieInfo?.Rated}</span>
+            </MovieInfo>
+            <MovieInfo>
+              Released: <span>{movieInfo?.Released}</span>
+            </MovieInfo>
+            <MovieInfo>
+              Runtime: <span>{movieInfo?.Runtime}</span>
+            </MovieInfo>
+            <MovieInfo>
+              Genre: <span>{movieInfo?.Genre}</span>
+            </MovieInfo>
+            <MovieInfo>
+              Director: <span>{movieInfo?.Director}</span>
+            </MovieInfo>
+            <MovieInfo>
+              Actors: <span>{movieInfo?.Actors}</span>
+            </MovieInfo>
+            <MovieInfo>
+              Plot: <span>{movieInfo?.Plot}</span>
+            </MovieInfo>
+          </InfoColumn>
+          <Close onClick={() => props.onMovieSelect()}>X</Close>
         </>
       ) : (
         <h3>Loading...</h3>
       )}
-    </React.Fragment>
+    </Container>
   );
 };
 export default MovieInfoComponent;
