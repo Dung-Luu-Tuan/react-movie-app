@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { API_KEY } from "../App";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination, Scrollbar, A11y } from "swiper";
@@ -138,12 +137,8 @@ const RightSide = (props) => {
       <h1>Top Searches</h1>
       <div className="topSearches">
         {props.api?.map((item, index) => (
-          <Link
-            to={`/movie/${item?.id}`}
-            style={{ textDecoration: "none" }}
-            key={index}
-          >
-            <div className="topSearches__item" key={index}>
+          <Link to={`/movie/${item?.id}`} style={{ textDecoration: "none" }} key={index}>
+            <div className="topSearches__item" >
               <img
                 src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}
                 className="topSearches__item-picture"
@@ -168,19 +163,19 @@ const MovieIndexComponent = () => {
 
   useEffect(() => {
     axios
-      .get(`https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`)
+      .get(`/trending/all/day`)
       .then((response) => setSlideshowAll(response.data.results));
   }, []);
 
   useEffect(() => {
     axios
-      .get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`)
+      .get(`/trending/movie/day`)
       .then((response) => setSlideshowMovie(response.data.results));
   }, []);
 
   useEffect(() => {
     axios
-      .get(`https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY}`)
+      .get(`/trending/tv/day`)
       .then((response) => setSlideshowTv(response.data.results));
   }, []);
 

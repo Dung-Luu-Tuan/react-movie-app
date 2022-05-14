@@ -40,8 +40,4 @@ const MovieTrailer = (props) => {
   );
 };
 
-// YoutubeEmbed.propTypes = {
-//   embedId: PropTypes.string.isRequired
-// };
-
 export default MovieTrailer;

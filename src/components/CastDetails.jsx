@@ -1,30 +1,27 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import axios from "axios";
-import { API_KEY } from "../App";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import CastParticipated from "./CastParticipated";
 
-// https://api.themoviedb.org/3/person/1136406?api_key=1ffbb6c9f0d5b48932c257b5d05f2a8e&append_to_response=credits
-// https://api.themoviedb.org/3/person/1136406/movie_credits?api_key=1ffbb6c9f0d5b48932c257b5d05f2a8e
 const CastDetails = () => {
   const [castDetail, setCastDetail] = useState();
+
   const { castId } = useParams();
 
   useEffect(() => {
     axios
-      .get(
-        `https://api.themoviedb.org/3/person/${castId}?api_key=${API_KEY}&append_to_response=credits`
-      )
-      .then((respone) => setCastDetail(respone.data));
-  }, []);
+      .get(`/person/${castId}?append_to_response=credits`)
+      .then((response) => setCastDetail(response.data));
+  }, [castId]);
+
   return (
     <>
       <div className="castDetails">
         <div className="left-col">
           <img
             className="detailImg"
-            src={`https://image.tmdb.org/t/p/original/${castDetail?.profile_path}`}
             alt=""
+            src={`https://image.tmdb.org/t/p/original/${castDetail?.profile_path}`}
           />
           <div className="title">
             Personal infomation
@@ -51,9 +48,7 @@ const CastDetails = () => {
           <div className="light-text margin-2">{castDetail?.biography}</div>
           <h4 className="font-600 margin-2">Movies participated</h4>
           <div className="movie-participated">
-            <CastParticipated participates={castDetail?.credits.cast}>
-              {" "}
-            </CastParticipated>
+            <CastParticipated participates={castDetail?.credits.cast} />
           </div>
         </div>
       </div>
