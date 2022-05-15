@@ -4,8 +4,8 @@ const MovieComponent = (props) => {
   const { title, release_date, id, poster_path } = props.movie;
 
   return (
-    <Link to={"/movie/" + id} style={{ textDecoration: "none" }}>
-      <div className="searchMovieContainer">
+    <div className="searchMovieContainer">
+      <Link to={"/movie/" + id} style={{ textDecoration: "none" }}>
         <img
           id="posterSearch"
           alt=""
@@ -15,8 +15,8 @@ const MovieComponent = (props) => {
         <div className="infoSearch">
           <span className="releaseDay">{release_date}</span>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 export default MovieComponent;

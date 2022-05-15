@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { IMAGE_URL } from '../App'
 import { Link } from "react-router-dom";
 
 //SwiperStyle
@@ -79,7 +80,7 @@ const MiddleSide = (props) => {
             <SwiperSlide key={index}>
               <Link to={`/movie/${item.id}`}>
                 <img
-                  src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
+                  src={`${IMAGE_URL}/${item?.backdrop_path}`}
                   className="slideShowTop__picture"
                   alt=""
                 />
@@ -119,7 +120,7 @@ const SlideShowBottomItem = (props) => {
       <Link to={`/movie/${props.item?.id}`}>
         <img
           className="slideShowBottom__picture"
-          src={`https://image.tmdb.org/t/p/original/${props.item?.poster_path}`}
+          src={`${IMAGE_URL}/${props.item?.poster_path}`}
           alt=""
         />
       </Link>
@@ -140,7 +141,7 @@ const RightSide = (props) => {
           <Link to={`/movie/${item?.id}`} style={{ textDecoration: "none" }} key={index}>
             <div className="topSearches__item" >
               <img
-                src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}
+                src={`${IMAGE_URL}/${item?.poster_path}`}
                 className="topSearches__item-picture"
                 alt=""
               />

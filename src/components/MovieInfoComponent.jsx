@@ -67,7 +67,7 @@ const MovieInfoComponent = (props) => {
                 Release Date : <span>{movieInfo?.release_date}</span>
               </div>
 
-              <div id="overview">{movieInfo?.overview}</div>
+              <div className="overview">{movieInfo?.overview}</div>
 
               <div className="movieInfo">CAST</div>
               <div className="castList">

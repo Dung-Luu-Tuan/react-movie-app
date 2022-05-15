@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CastParticipated from "./CastParticipated";
+import { IMAGE_URL } from "../App";
 
 const CastDetails = () => {
   const [castDetail, setCastDetail] = useState();

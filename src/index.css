@@ -29,6 +29,7 @@ code {
 .font-600 {
   font-weight: 600;
 }
+
 /* App */
 .header {
   display: flex;
@@ -94,10 +95,12 @@ code {
   padding: 0.5rem calc((100vw - 1200px) / 2);
   color: #7a7a7a;
 }
+
 .movieListContainer h3 {
   margin: 10px auto;
   font-weight: 400;
 }
+
 @media (min-width: 1440px) {
   .movieListContainer {
     --columns: 5;
@@ -176,11 +179,14 @@ code {
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.75);
   position: relative;
+  line-height: 1.5;
 }
-.background-section > h3 {
+
+.background-section>h3 {
   color: #fff;
   font-weight: 500;
 }
+
 .background-section:before {
   position: absolute;
   content: "";
@@ -244,15 +250,16 @@ code {
   word-wrap: break-word;
   z-index: 1;
 }
+
 .movieInfo span {
   color: #b5b5b5;
   font-weight: 300;
 }
 
-#overview {
+.overview {
   color: #afb5a7;
   line-height: 1.5rem;
-  margin: 1rem 0;
+  margin: 5rem 0 1rem 0;
   font-size: 1em;
   z-index: 1;
   max-width: 100%;
@@ -354,7 +361,7 @@ code {
   /* background-color: rgba(0, 0, 0, 0.25); */
   width: auto;
   height: auto;
-  color:#fff;
+  color: #fff;
 }
 
 .left-col {

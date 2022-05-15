@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import MovieComponent from "./components/MovieComponent";
 import "./config/axios";
@@ -7,7 +7,7 @@ import "./config/axios";
 export const IMAGE_URL = "https://image.tmdb.org/t/p/original";
 
 function App() {
-  const [searchQuery, updateSearchQuery] = useState();
+  const [searchQuery, updateSearchQuery] = useState("");
   const [timeoutId, updateTimeoutId] = useState();
   const [movieList, updateMovieList] = useState();
 
@@ -42,10 +42,7 @@ function App() {
       <div className="movieListContainer">
         {movieList?.length ? (
           movieList.map((movie, index) => (
-            <MovieComponent
-              key={index}
-              movie={movie}
-            />
+            <MovieComponent key={index} movie={movie} />
           ))
         ) : (
           <h3>No Movie Search</h3>
