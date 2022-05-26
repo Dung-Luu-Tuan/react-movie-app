@@ -9,17 +9,18 @@ import "swiper/css/navigation";
 // import required modules
 import { Navigation } from "swiper";
 
+const movieTrailerSwiper = {
+  slidesPerView: 1,
+  spaceBetween: 30,
+  navigation: true,
+  modules: [Navigation],
+  className: "mySpiwer",
+};
+
 const MovieTrailer = (props) => {
   return (
     <div className="movieTrailer">
-      <Swiper
-        slidesPerView={1}
-        spaceBetween={30}
-        // loop={true}
-        navigation={true}
-        modules={[Navigation]}
-        className="mySwiper"
-      >
+      <Swiper {...movieTrailerSwiper}>
         {props.movieTrailer?.slice(0, 5).map((video, index) => (
           <SwiperSlide key={index}>
             <div className="trailer">

@@ -10,19 +10,19 @@ import { Navigation } from "swiper";
 import { Link } from "react-router-dom";
 import errorImgCast from "../picture/error_img_cast.jpg";
 
+const castSwiper = {
+  slidesPerView: 4,
+  spaceBetween: 0,
+  slidesPerGroup: 4,
+  navigation: true,
+  modules: [Navigation],
+  className: "mySwiper",
+};
+
 const MovieCastComponent = (props) => {
   return (
     <>
-      <Swiper
-        slidesPerView={4}
-        spaceBetween={0}
-        slidesPerGroup={4}
-        // loop={true}
-        // loopFillGroupWithBlank={true}
-        navigation={true}
-        modules={[Navigation]}
-        className="mySwiper"
-      >
+      <Swiper {...castSwiper}>
         {props.movieCast?.map((item, index) => (
           <SwiperSlide key={index}>
             <div className="castInfo">

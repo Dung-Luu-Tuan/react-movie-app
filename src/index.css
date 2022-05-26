@@ -1,9 +1,3 @@
-/* * {
-  min-width: 0;
-  min-height: 0;
-  box-sizing: border-box;
-} */
-
 body {
   margin: 0;
   font-family: "BlinkMacSystemFont", "-apple-system", "Segoe UI", "Roboto",
@@ -60,6 +54,12 @@ code {
   color: rgb(153, 238, 180, 1);
 }
 
+.search {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+}
+
 #searchBox {
   display: flex;
   flex-direction: row;
@@ -67,8 +67,7 @@ code {
   background-color: white;
   border-radius: 6px;
   margin-left: 20px;
-  width: 50%;
-  background-color: white;
+  width: 70%;
   align-items: center;
 }
 
@@ -84,6 +83,20 @@ code {
   border: none;
   outline: none;
   margin-left: 15px;
+}
+
+.searchYear {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 30%;
+  border-radius: 6px;
+  background-color: white;
+}
+
+.searchYear select {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
 }
 
 .movieListContainer {

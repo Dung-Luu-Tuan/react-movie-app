@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { IMAGE_URL } from '../App'
+import { IMAGE_URL } from "../App";
 import { Link } from "react-router-dom";
 
 //SwiperStyle
@@ -138,8 +138,12 @@ const RightSide = (props) => {
       <h1>Top Searches</h1>
       <div className="topSearches">
         {props.api?.map((item, index) => (
-          <Link to={`/movie/${item?.id}`} style={{ textDecoration: "none" }} key={index}>
-            <div className="topSearches__item" >
+          <Link
+            to={`/movie/${item?.id}`}
+            style={{ textDecoration: "none" }}
+            key={index}
+          >
+            <div className="topSearches__item">
               <img
                 src={`${IMAGE_URL}/${item?.poster_path}`}
                 className="topSearches__item-picture"
