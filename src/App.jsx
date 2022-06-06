@@ -7,16 +7,22 @@ import "./config/axios";
 export const IMAGE_URL = "https://image.tmdb.org/t/p/original";
 
 function App() {
-  const [searchQuery, updateSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [yearQuery, setYearQuery] = useState("");
-  const [timeoutId, updateTimeoutId] = useState();
-  const [movieList, updateMovieList] = useState();
+  const [timeoutId, setTimeoutId] = useState();
+  const [movieList, setMovieList] = useState();
 
+<<<<<<< HEAD
   const fetchDataInput = async (searchString) => {
+=======
+  const fetchData_searchString = async (searchString) => {
+>>>>>>> 5b3b5eaa68f712c099df47e56fd1d3c6732043b8
     const response = await axios.get(`/search/movie?query=${searchString}`);
-    updateMovieList(response.data.results);
+    setMovieList(response.data.results);
+    setYearQuery('');
   };
 
+<<<<<<< HEAD
   const fetchDataYear = async (year) => {
     const response = await axios.get("/discover/movie?" + checkTypeYear(year));
     updateMovieList(response.data.results);
@@ -80,17 +86,44 @@ function App() {
         )}
       </div>
     );
+=======
+  const onTextChange_searchString = (event) => {
+    clearTimeout(timeoutId);
+    setSearchQuery(event.target.value);
+    const timeout = setTimeout(() => fetchData_searchString(event.target.value), 500);
+    setTimeoutId(timeout);
+  };
+
+  const fetchData_selectYear = async (year) => {
+    const response = await axios.get(`/discover/movie?release_date.lte=${year}`);
+    setMovieList(response.data.results);
+    setSearchQuery('')
+  };
+
+  const onTextChange_selectYear = (event) => {
+    clearTimeout(timeoutId);
+    setYearQuery(event.target.value);
+    const timeout = setTimeout(() => fetchData_selectYear(event.target.value), 500);
+    setTimeoutId(timeout);
+>>>>>>> 5b3b5eaa68f712c099df47e56fd1d3c6732043b8
   };
 
   return (
     <>
       <div className="header">
+<<<<<<< HEAD
         <Link to="/" className="page-link">
           <div className="appName">
             <img className="movieImg" src="/movie-icon.svg" alt="" />
             <span className="movieLogo">React Movie App</span>
           </div>
         </Link>
+=======
+        <div className="appName">
+          <img className="movieImg" src="/movie-icon.svg" alt="" />
+          <span className="movieLogo">React Movie App</span>
+        </div>
+>>>>>>> 5b3b5eaa68f712c099df47e56fd1d3c6732043b8
         <div className="search">
           <div id="searchBox">
             <img id="searchIcon" src="/search-icon.svg" alt="" />
@@ -98,10 +131,30 @@ function App() {
               id="searchInput"
               placeholder="Search Movie..."
               value={searchQuery}
-              onChange={onTextChange}
+              onChange={onTextChange_searchString}
             />
           </div>
+<<<<<<< HEAD
           <SearchYear />
+=======
+          <div className="searchYear">
+            <select value={Number(yearQuery)} onChange={onTextChange_selectYear}>
+              <option value="">- Năm phát hành -</option>
+              <option value="2022">Năm 2022</option>
+              <option value="2021">Năm 2021</option>
+              <option value="2020">Năm 2020</option>
+              <option value="2019">Năm 2019</option>
+              <option value="2018">Năm 2018</option>
+              <option value="2017">Năm 2017</option>
+              <option value="2016">Năm 2016</option>
+              <option value="2015">Năm 2015</option>
+              <option value="2014">Năm 2014</option>
+              <option value="2013">Năm 2013</option>
+              <option value="2012">Năm 2012</option>
+              <option value="-2012">Trước 2012</option>
+            </select>
+          </div>
+>>>>>>> 5b3b5eaa68f712c099df47e56fd1d3c6732043b8
         </div>
       </div>
       <Container />

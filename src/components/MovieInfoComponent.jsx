@@ -12,8 +12,6 @@ import ErrorImg from "../picture/error_img_cast.jpg";
 const MovieInfoComponent = (props) => {
   const [movieInfo, setMovieInfo] = useState();
   const [movieCast, setMovieCast] = useState();
-  // const [movieTrailer, setMovieTrailer] = useState();
-  // const { selectedMovie } = props;
   const { movieId } = useParams();
 
   useEffect(() => {
