@@ -16,13 +16,14 @@ const GlobalStyle = createGlobalStyle`
     font-size: 16px;
   }
 `;
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<MovieIndexComponent />} />
-        <Route path="/search" element={<App />} ></Route>
+        <Route path="/search" element={<App />}></Route>
         <Route path="/movie/:movieId" element={<MovieInfoComponent />} />
         <Route path="/cast/:castId" element={<CastDetails />} />
       </Routes>

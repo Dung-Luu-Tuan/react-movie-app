@@ -38,11 +38,28 @@ code {
   box-shadow: 0 3px 6px 0 #555;
 }
 
+.page-link {
+  text-decoration: none;
+}
+
 .appName {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
+
+.searchYear {
+  margin-left: 5px;
+}
+
+.searchYear select {
+  line-height: 1;
+  padding: 7px 40px 8px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+}
+
 
 .movieImg {
   width: 48px;

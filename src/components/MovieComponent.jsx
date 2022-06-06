@@ -5,7 +5,7 @@ const MovieComponent = (props) => {
 
   return (
     <div className="searchMovieContainer">
-      <Link to={"/movie/" + id} style={{ textDecoration: "none" }}>
+      <Link to={"/movie/" + id} className="page-link">
         <img
           id="posterSearch"
           alt=""
