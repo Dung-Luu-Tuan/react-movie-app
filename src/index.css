@@ -60,7 +60,6 @@ code {
   outline: none;
 }
 
-
 .movieImg {
   width: 48px;
   height: 48px;
@@ -138,6 +137,37 @@ code {
   }
 }
 
+@media (max-width: 1179px) {
+  .rightSide {
+    display: none;
+  }
+  .middleSide {
+    width: 70% !important;
+  }
+  .leftSide {
+    width: 30% !important;
+  }
+  .search {
+    width: 60%;
+  }
+  #searchBox {
+    width: 60%;
+  }
+  .searchYear {
+    width: 40%;
+  }
+  .infoColumn {
+    width: 65%;
+  }
+  .right-col {
+    width: 70% !important;
+    margin-right: 20px !important;
+  }
+  .participateContent {
+    flex-basis: 20% !important;
+  }
+}
+
 @media (max-width: 768px) {
   .movieListContainer {
     --columns: 3;
@@ -198,9 +228,8 @@ code {
   line-height: 1.5;
 }
 
-
 /* MovieInfoComponent */
-.background-section {
+.backgroundSection {
   display: flex;
   height: 600px;
   justify-content: center;
@@ -213,7 +242,7 @@ code {
   line-height: 1.5;
 }
 
-.background-section>h3 {
+.background-section > h3 {
   color: #fff;
   font-weight: 500;
 }
@@ -228,7 +257,7 @@ code {
   opacity: 0.8;
 }
 
-.content-section {
+.contentSection {
   display: flex;
   flex-flow: row nowrap;
   margin-top: -350px;
@@ -295,7 +324,6 @@ code {
   z-index: 1;
   max-width: 100%;
 }
-
 
 .castList {
   display: flex;
@@ -401,7 +429,6 @@ code {
   flex-flow: column nowrap;
   width: 25%;
   padding: 12px 32px;
-
 }
 
 .right-col {
@@ -427,7 +454,6 @@ code {
 
 dt {
   font-weight: 600;
-
 }
 
 dd {
@@ -448,7 +474,6 @@ dd {
 .movie-participated {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
 }
 
 .poster {
@@ -457,16 +482,11 @@ dd {
   /* height: 100%; */
   flex-shrink: 0;
   object-fit: cover;
-
 }
 
-.participate-content {
-  flex-grow: 0;
-  flex-shrink: 0;
+.participateContent {
   flex-basis: 25%;
   padding: 12px 20px;
-  margin: 0 12px;
-  cursor: pointer;
 }
 
 /* movie index */
@@ -622,7 +642,6 @@ dd {
   flex: 1;
   font-weight: 400;
 }
-
 
 /* RightSide Flex*/
 .rightSide {

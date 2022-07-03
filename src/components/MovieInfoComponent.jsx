@@ -29,14 +29,14 @@ const MovieInfoComponent = (props) => {
   return (
     <React.Fragment>
       <div
-        className="background-section"
+        className="backgroundSection"
         style={{
           backgroundImage: `url(${IMAGE_URL}/${movieInfo?.backdrop_path})`,
         }}
       ></div>
       {movieInfo ? (
         <>
-          <div className="content-section">
+          <div className="contentSection">
             <img
               id="poster"
               src={
