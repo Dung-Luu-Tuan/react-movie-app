@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Outlet, Link } from "react-router-dom";
 import MovieComponent from "./MovieComponent";
 import "../config/axios";
@@ -9,6 +10,13 @@ function Index() {
   const [yearQuery, setYearQuery] = useState("");
   const [timeoutId, setTimeoutId] = useState();
   const [movieList, setMovieList] = useState();
+  const { searchStringParams } = useParams();
+  console.log(searchStringParams);
+  useEffect(() => {
+    axios
+      .get(`/search/movie?query=${searchStringParams}`)
+      .then((response) => setMovieList(response.data));
+  }, []);
 
   const fetchDataInput = async (searchString) => {
     const response = await axios.get(`/search/movie?query=${searchString}`);
@@ -64,6 +72,7 @@ function Index() {
       </div>
     );
   };
+
   return (
     <>
       <div className="header">
@@ -74,7 +83,7 @@ function Index() {
           </div>
         </Link>
         <div className="search">
-          <div id="searchBox">
+          <div className="searchBox">
             <img id="searchIcon" src="/search-icon.svg" alt="" />
             <input
               id="searchInput"
