@@ -23,7 +23,7 @@ ReactDOM.render(
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<MovieIndexComponent />} />
-        <Route path="/search/:searchString" element={<App />}></Route>
+        <Route path="/search/:searchString" element={<App />} />
         <Route path="/movie/:movieId" element={<MovieInfoComponent />} />
         <Route path="/cast/:castId" element={<CastDetails />} />
       </Routes>

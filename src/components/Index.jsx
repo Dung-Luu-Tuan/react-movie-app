@@ -1,21 +1,32 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Outlet, Link } from "react-router-dom";
 import MovieComponent from "./MovieComponent";
 import "../config/axios";
 
+const SearchYear = () => {
+  let year = [];
+  for (let i = 2022; i > 2011; i--) {
+    year.push(i);
+  }
+  return year;
+};
+
 function Index() {
   const [searchQuery, setSearchQuery] = useState("");
   const [yearQuery, setYearQuery] = useState("");
-  const [timeoutId, setTimeoutId] = useState();
   const [movieList, setMovieList] = useState();
-  const { searchStringParams } = useParams();
-  console.log(searchStringParams);
+
+  const input = useRef();
+  const timeoutId = useRef();
+
+  const params = useParams();
+
   useEffect(() => {
     axios
-      .get(`/search/movie?query=${searchStringParams}`)
-      .then((response) => setMovieList(response.data));
+      .get(`/search/movie?query=${params.searchString}`)
+      .then((response) => setMovieList(response.data.results));
   }, []);
 
   const fetchDataInput = async (searchString) => {
@@ -33,7 +44,7 @@ function Index() {
     clearTimeout(timeoutId);
     setSearchQuery(event.target.value);
     const timeout = setTimeout(() => fetchDataInput(event.target.value), 500);
-    setTimeoutId(timeout);
+    timeoutId.current = timeout;
   };
 
   const onYearChange = (event) => {
@@ -50,28 +61,6 @@ function Index() {
       return `primary_release_year=${year}`;
     }
   }
-
-  const SearchYear = () => {
-    let year = [];
-    for (let i = 2022; i > 2011; i--) {
-      year.push(i);
-    }
-    return year;
-  };
-
-  const Container = () => {
-    return (
-      <div className="movieListContainer">
-        {movieList?.length ? (
-          movieList.map((movie, index) => (
-            <MovieComponent key={index} movie={movie} />
-          ))
-        ) : (
-          <h3>No Movie Search</h3>
-        )}
-      </div>
-    );
-  };
 
   return (
     <>
@@ -90,6 +79,7 @@ function Index() {
               placeholder="Search Movie..."
               value={searchQuery}
               onChange={onTextChange}
+              ref={input}
             />
           </div>
           <div className="searchYear">
@@ -109,7 +99,15 @@ function Index() {
           </div>
         </div>
       </div>
-      <Container />
+      <div className="movieListContainer">
+        {movieList?.length ? (
+          movieList.map((movie, index) => (
+            <MovieComponent key={index} movie={movie} />
+          ))
+        ) : (
+          <h3>No Movie Search</h3>
+        )}
+      </div>
       <Outlet />
     </>
   );
