@@ -16,23 +16,26 @@ const SearchYear = () => {
 function Index() {
   const [searchQuery, setSearchQuery] = useState("");
   const [yearQuery, setYearQuery] = useState("");
-  const [movieList, setMovieList] = useState();
+  const [movieList, setMovieList] = useState([]);
 
-  const input = useRef();
   const timeoutId = useRef();
 
   const params = useParams();
+  console.log(params.searchString);
 
   useEffect(() => {
     axios
       .get(`/search/movie?query=${params.searchString}`)
       .then((response) => setMovieList(response.data.results));
+    setSearchQuery(params.searchString);
   }, []);
 
   const fetchDataInput = async (searchString) => {
-    const response = await axios.get(`/search/movie?query=${searchString}`);
-    setMovieList(response.data.results);
-    setYearQuery("");
+    if (searchString.trim().length > 0) {
+      const response = await axios.get(`/search/movie?query=${searchString}`);
+      setMovieList(response.data.results);
+      setYearQuery("");
+    }
   };
 
   const fetchDataYear = async (year) => {
@@ -79,7 +82,6 @@ function Index() {
               placeholder="Search Movie..."
               value={searchQuery}
               onChange={onTextChange}
-              ref={input}
             />
           </div>
           <div className="searchYear">

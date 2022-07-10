@@ -32,8 +32,7 @@ const MovieCastComponent = (props) => {
                   alt=""
                   src={
                     item.profile_path
-                      ? "https://image.tmdb.org/t/p/original/" +
-                        item.profile_path
+                      ? `https://image.tmdb.org/t/p/original/${item.profile_path}`
                       : errorImgCast
                   }
                 />

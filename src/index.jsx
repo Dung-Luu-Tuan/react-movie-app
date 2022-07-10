@@ -23,7 +23,9 @@ ReactDOM.render(
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<MovieIndexComponent />} />
-        <Route path="/search/:searchString" element={<App />} />
+        {["/search/:searchString"].map((path, index) => (
+          <Route path={path} element={<App />} key={index} />
+        ))}
         <Route path="/movie/:movieId" element={<MovieInfoComponent />} />
         <Route path="/cast/:castId" element={<CastDetails />} />
       </Routes>

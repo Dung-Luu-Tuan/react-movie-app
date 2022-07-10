@@ -25,8 +25,6 @@ const StyleSwiperMulti = {
   },
   loop: false,
   className: "mySwiper",
-  onSwiper: (swiper) => console.log(swiper),
-  onSlideChange: () => console.log("slide change"),
 };
 
 const StyleSwiperSingle = {
@@ -38,21 +36,21 @@ const StyleSwiperSingle = {
   navigation: true,
   pagination: { clickable: true },
   autoplay: { delay: 2500, disableOnInteraction: false },
-  onSwiper: (swiper) => console.log(swiper),
-  onSlideChange: () => console.log("slide change"),
 };
 
 //Container flex left
 const LeftSide = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [movieList, setMovieList] = useState();
+  const [movieList, setMovieList] = useState([]);
   const [timeoutId, setTimeoutId] = useState();
   const [searchString, setSearchString] = useState();
 
   const fetchDataInput = async (searchString) => {
-    const response = await axios.get(`/search/movie?query=${searchString}`);
-    setMovieList(response.data.results);
-    setSearchString(searchString);
+    if (searchString.trim().length > 0) {
+      const response = await axios.get(`/search/movie?query=${searchString}`);
+      setMovieList(response.data.results);
+      setSearchString(searchString);
+    }
   };
 
   const onTextChange = (event) => {
@@ -100,9 +98,13 @@ const LeftSide = () => {
             </Link>
           ))
         ) : (
-          <h3 className="message__search--index">Oops! No results found</h3>
+          <h3 className="message__search--index">
+            {movieList.length === 0 && searchQuery.length > 0
+              ? "Oops! No results found"
+              : ""}
+          </h3>
         )}
-        {movieList ? (
+        {movieList.length > 0 ? (
           <Link
             to={"/search/" + searchString}
             style={{ textDecoration: "none" }}
