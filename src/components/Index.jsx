@@ -19,9 +19,7 @@ function Index() {
   const [movieList, setMovieList] = useState([]);
 
   const timeoutId = useRef();
-
   const params = useParams();
-  console.log(params.searchString);
 
   useEffect(() => {
     axios

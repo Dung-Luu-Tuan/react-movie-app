@@ -51,6 +51,9 @@ const LeftSide = () => {
       setMovieList(response.data.results);
       setSearchString(searchString);
     }
+    if (searchString.trim().length === 0) {
+      setMovieList([]);
+    }
   };
 
   const onTextChange = (event) => {
@@ -61,61 +64,63 @@ const LeftSide = () => {
   };
   return (
     <div className="leftSide">
-      <AppInfo />
-      {/* <Link to={`/search`} style={{ textDecoration: "none" }}> */}
-      <div className="leftSide__searchSelect">
-        <div className="leftSide__searchSelect-title">
-          <div className="searchBox search-black">
-            <img id="searchIcon" src="/search-icon.svg" alt="" />
-            <input
-              className="search-black"
-              id="searchInput"
-              placeholder="Search Movie..."
-              value={searchQuery}
-              onChange={onTextChange}
-            />
+      <div className="fixed__left">
+        <AppInfo />
+        {/* <Link to={`/search`} style={{ textDecoration: "none" }}> */}
+        <div className="leftSide__searchSelect">
+          <div className="leftSide__searchSelect-title">
+            <div className="searchBox search-black">
+              <img id="searchIcon" src="/search-icon.svg" alt="" />
+              <input
+                className="search-black"
+                id="searchInput"
+                placeholder="Search Movie..."
+                value={searchQuery}
+                onChange={onTextChange}
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <div className="leftSide__searchResult">
-        {movieList?.length ? (
-          movieList.slice(0, 4).map((movie, index) => (
-            <Link
-              to={`/movie/${movie?.id}`}
-              style={{ textDecoration: "none" }}
-              key={index}
-              className="link__searchIndex"
-            >
-              <div className="result__item">
-                <img src={`${IMAGE_URL}/${movie?.poster_path}`} alt="" />
-                <div className="result__info">
-                  <div className="info__name">
-                    {movie.original_name || movie.title}
+        <div className="leftSide__searchResult">
+          {movieList?.length ? (
+            movieList.slice(0, 4).map((movie, index) => (
+              <Link
+                to={`/movie/${movie?.id}`}
+                style={{ textDecoration: "none" }}
+                key={index}
+                className="link__searchIndex"
+              >
+                <div className="result__item">
+                  <img src={`${IMAGE_URL}/${movie?.poster_path}`} alt="" />
+                  <div className="result__info">
+                    <div className="info__name">
+                      {movie.original_name || movie.title}
+                    </div>
+                    <div className="info__year">{movie.release_date}</div>
                   </div>
-                  <div className="info__year">{movie.release_date}</div>
                 </div>
+              </Link>
+            ))
+          ) : (
+            <h3 className="message__search--index">
+              {movieList.length === 0 && searchQuery.length > 0
+                ? "Oops! No results found"
+                : ""}
+            </h3>
+          )}
+          {movieList.length > 0 ? (
+            <Link
+              to={"/search/" + searchString}
+              style={{ textDecoration: "none" }}
+            >
+              <div className="seeAllResult">
+                See all result for "{searchString}"
               </div>
             </Link>
-          ))
-        ) : (
-          <h3 className="message__search--index">
-            {movieList.length === 0 && searchQuery.length > 0
-              ? "Oops! No results found"
-              : ""}
-          </h3>
-        )}
-        {movieList.length > 0 ? (
-          <Link
-            to={"/search/" + searchString}
-            style={{ textDecoration: "none" }}
-          >
-            <div className="seeAllResult">
-              See all result for "{searchString}"
-            </div>
-          </Link>
-        ) : (
-          ""
-        )}
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     </div>
   );
@@ -245,19 +250,21 @@ const MovieIndexComponent = () => {
   }, []);
 
   return (
-    <div className="containerMain">
-      <LeftSide />
-      <MiddleSide
-        slideShowTop={slideshowAll}
-        slideShowBottom_1={slideshowMovie}
-        title1={"Hot Movies"}
-        slideShowBottom_2={slideshowTv}
-        title2={"TV Shows"}
-        slideShowBottom_3={slideshowMovie}
-        title3={"Trending Now"}
-      ></MiddleSide>
-      <RightSide api={slideshowMovie} />
-    </div>
+    <>
+      <div className="containerMain">
+        <LeftSide />
+        <MiddleSide
+          slideShowTop={slideshowAll}
+          slideShowBottom_1={slideshowMovie}
+          title1={"Hot Movies"}
+          slideShowBottom_2={slideshowTv}
+          title2={"TV Shows"}
+          slideShowBottom_3={slideshowMovie}
+          title3={"Trending Now"}
+        ></MiddleSide>
+        <RightSide api={slideshowMovie} />
+      </div>
+    </>
   );
 };
 export default MovieIndexComponent;

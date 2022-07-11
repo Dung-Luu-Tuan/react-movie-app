@@ -8,8 +8,9 @@ import MovieTrailer from "./MovieTrailer";
 import Writer from "./Writers";
 import Directors from "./Directors";
 import ErrorImg from "../picture/error_img_cast.jpg";
+import Header from "./Header";
 
-const MovieInfoComponent = (props) => {
+const MovieInfoComponent = () => {
   const [movieInfo, setMovieInfo] = useState();
   const [movieCast, setMovieCast] = useState();
   const { movieId } = useParams();
@@ -28,10 +29,13 @@ const MovieInfoComponent = (props) => {
 
   return (
     <React.Fragment>
+      <Header />
       <div
         className="backgroundSection"
         style={{
-          backgroundImage: `url(${IMAGE_URL}/${movieInfo?.backdrop_path})`,
+          backgroundImage: movieInfo?.backdrop_path
+            ? `url(${IMAGE_URL}/${movieInfo?.backdrop_path})`
+            : `url("https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fG1vdmllfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60")`,
         }}
       ></div>
       {movieInfo ? (

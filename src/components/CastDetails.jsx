@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CastParticipated from "./CastParticipated";
+import Header from "./Header";
+import posterError from "../picture/poster_error.jpg";
 
 const CastDetails = () => {
   const [castDetail, setCastDetail] = useState();
@@ -16,12 +18,17 @@ const CastDetails = () => {
 
   return (
     <>
+      <Header />
       <div className="castDetails">
         <div className="left-col">
           <img
             className="detailImg"
             alt=""
-            src={`https://image.tmdb.org/t/p/original/${castDetail?.profile_path}`}
+            src={
+              castDetail?.profile_path
+                ? `https://image.tmdb.org/t/p/original/${castDetail?.profile_path}`
+                : posterError
+            }
           />
           <div className="title">
             Personal infomation
