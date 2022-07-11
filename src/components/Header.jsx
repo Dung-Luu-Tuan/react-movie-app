@@ -18,7 +18,6 @@ function Header() {
     return () => {
       window.removeEventListener("scroll", changeBackground);
       setNavbarColor("");
-      console.log("remove");
     };
   }, []);
   return (
