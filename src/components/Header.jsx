@@ -3,19 +3,22 @@ import { Link } from "react-router-dom";
 
 function Header() {
   const [navbarColor, setNavbarColor] = useState();
-  const changeBackground = () => {
-    if (window.scrollY > 600) {
-      setNavbarColor("rgba(51, 10, 103, 0.93)");
-    } else {
-      setNavbarColor("transparent");
-    }
-  };
 
   useEffect(() => {
-    const id = window.addEventListener("scroll", changeBackground);
+    const changeBackground = () => {
+      if (window.scrollY > 600) {
+        setNavbarColor("rgba(51, 10, 103, 0.93)");
+      } else {
+        setNavbarColor("transparent");
+      }
+    };
+
+    window.addEventListener("scroll", changeBackground);
 
     return () => {
-      window.removeEventListener(id);
+      window.removeEventListener("scroll", changeBackground);
+      setNavbarColor("");
+      console.log("remove");
     };
   }, []);
   return (
