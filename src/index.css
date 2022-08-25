@@ -279,6 +279,7 @@ code {
   background-color: rgba(0, 0, 0, 0.75);
   position: relative;
   line-height: 1.5;
+  filter: brightness(50%);
 }
 
 .background-section>h3 {
@@ -369,6 +370,7 @@ code {
   max-width: 767px;
   flex-wrap: wrap;
   z-index: 1;
+  position: relative;
 }
 
 .castInfo {
@@ -382,8 +384,8 @@ code {
 
 .castImage {
   margin: 15px;
-  width: 5rem;
-  height: 5rem;
+  width: 7rem;
+  height: 7rem;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid transparent;
@@ -396,7 +398,7 @@ code {
 
 .castRealName {
   color: #dbdbdb;
-  margin-top: 20px;
+  margin-top: 5px;
   word-break: break-word;
   text-align: center;
   z-index: 1;
@@ -699,6 +701,7 @@ dd {
   flex-direction: row;
   width: 100%;
   margin: 0 0 12px 0;
+  cursor: pointer;
 }
 
 .topSearches__item-picture {

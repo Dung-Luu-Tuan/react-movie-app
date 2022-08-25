@@ -205,7 +205,7 @@ const RightSide = (props) => {
         {props.api?.map((item, index) => (
           <Link
             to={`/movie/${item?.id}`}
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none", cursor: "context-menu" }}
             key={index}
           >
             <div className="topSearches__item">
