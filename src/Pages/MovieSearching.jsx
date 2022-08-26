@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Outlet, Link } from "react-router-dom";
-import MovieComponent from "./MovieComponent";
+import MovieInfo from "../components/MovieInfo";
 import "../config/axios";
 
 const SearchYear = () => {
@@ -103,7 +103,7 @@ function Index() {
       <div className="movieListContainer">
         {movieList?.length ? (
           movieList.map((movie, index) => (
-            <MovieComponent key={index} movie={movie} />
+            <MovieInfo key={index} movie={movie} />
           ))
         ) : (
           <h3>No Movie Search</h3>

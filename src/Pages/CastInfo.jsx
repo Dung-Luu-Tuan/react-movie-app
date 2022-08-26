@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CastParticipated from "./CastParticipated";
-import Header from "./Header";
+import CastParticipated from "../components/CastParticipated";
+import Header from "../components/Header";
 import posterError from "../picture/poster_error.jpg";
 
 const CastDetails = () => {

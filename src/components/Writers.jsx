@@ -1,16 +1,17 @@
 const Writer = (props) => {
-    return (
+  return (
     <>
-         {props.writer?.filter((item) => item.job === "Writer")
-                  .map((item, index, arr) =>
-                    arr.length - 1 === index ? (
-                      <span key={index}> {item.name} </span>
-                    ) : (
-                      <span key={index}> {item.name}, </span>
-                    )
-                  )}        
+      {props.writer
+        ?.filter((item) => item.job === "Writer")
+        .map((item, index, arr) =>
+          arr.length - 1 === index ? (
+            <span key={index}> {item.name} </span>
+          ) : (
+            <span key={index}> {item.name}, </span>
+          )
+        )}
     </>
-    )
-}
+  );
+};
 
 export default Writer;

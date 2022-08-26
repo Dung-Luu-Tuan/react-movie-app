@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { useParams } from "react-router-dom";
 import { IMAGE_URL } from "../App";
-import MovieCastsComponent from "./MovieCastsComponent";
-import MovieTrailer from "./MovieTrailer";
-import Writer from "./Writers";
-import Directors from "./Directors";
+import Casts from "../components/Casts";
+import Trailers from "../components/Trailers";
+import Writers from "../components/Writers";
+import Directors from "../components/Directors";
 import ErrorImg from "../picture/error_img_cast.jpg";
-import Header from "./Header";
+import Header from "../components/Header";
 
 const MovieInfoComponent = () => {
   const [movieInfo, setMovieInfo] = useState();
@@ -58,7 +58,7 @@ const MovieInfoComponent = () => {
               </div>
 
               <div className="movieInfo">
-                Writers :<Writer writer={movieCast?.crew}></Writer>
+                Writers :<Writers writer={movieCast?.crew}></Writers>
               </div>
 
               <div className="movieInfo">
@@ -73,15 +73,15 @@ const MovieInfoComponent = () => {
 
               <div className="movieInfo">CAST</div>
               <div className="castList">
-                <MovieCastsComponent
+                <Casts
                   movieCast={movieCast?.cast}
-                ></MovieCastsComponent>
+                ></Casts>
               </div>
               <div className="movieInfo">TRAILER </div>
 
-              <MovieTrailer
+              <Trailers
                 movieTrailer={movieInfo?.videos.results}
-              ></MovieTrailer>
+              ></Trailers>
             </div>
           </div>
         </>

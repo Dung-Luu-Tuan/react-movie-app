@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import { createGlobalStyle } from "styled-components";
-import MovieInfoComponent from "./components/MovieInfoComponent";
-import CastDetails from "./components/CastDetails";
-import MovieIndexComponent from "./components/MovieIndexComponent";
+import MovieDetail from "./Pages/MovieDetail";
+import CastInfo from "./Pages/CastInfo";
+import Index from "./Pages/Index";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -22,12 +22,12 @@ ReactDOM.render(
     <Router>
       <GlobalStyle />
       <Routes>
-        <Route path="/" element={<MovieIndexComponent />} />
+        <Route path="/" element={<Index />} />
         {["/search/:searchString"].map((path, index) => (
           <Route path={path} element={<App />} key={index} />
         ))}
-        <Route path="/movie/:movieId" element={<MovieInfoComponent />} />
-        <Route path="/cast/:castId" element={<CastDetails />} />
+        <Route path="/movie/:movieId" element={<MovieDetail />} />
+        <Route path="/cast/:castId" element={<CastInfo />} />
       </Routes>
     </Router>
   </React.StrictMode>,
