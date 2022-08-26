@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import { createGlobalStyle } from "styled-components";
-import MovieDetail from "./Pages/MovieDetail";
-import CastInfo from "./Pages/CastInfo";
-import Index from "./Pages/Index";
+import MovieDetail from "./pages/MovieDetail";
+import CastInfo from "./pages/CastInfo";
+import Index from "./pages/Index";
 
 const GlobalStyle = createGlobalStyle`
   body {

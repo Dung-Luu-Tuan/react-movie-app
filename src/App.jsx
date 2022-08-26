@@ -1,4 +1,4 @@
-import MovieSearching from "./Pages/MovieSearching";
+import MovieSearching from "./pages/MovieSearching";
 import "./config/axios";
 
 export const IMAGE_URL = "https://image.tmdb.org/t/p/original";
