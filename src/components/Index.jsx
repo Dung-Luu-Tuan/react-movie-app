@@ -39,6 +39,7 @@ function Index() {
   const fetchDataYear = async (year) => {
     const response = await axios.get("/discover/movie?" + checkTypeYear(year));
     setMovieList(response.data.results);
+    setSearchQuery("");
   };
 
   const onTextChange = (event) => {
