@@ -7,6 +7,7 @@ import { createGlobalStyle } from "styled-components";
 import MovieDetail from "./pages/MovieDetail";
 import CastInfo from "./pages/CastInfo";
 import Index from "./pages/Index";
+import MovieViewer from "./pages/MovieViewer";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -28,6 +29,7 @@ ReactDOM.render(
         ))}
         <Route path="/movie/:movieId" element={<MovieDetail />} />
         <Route path="/cast/:castId" element={<CastInfo />} />
+        <Route path="/view/:slug" element={<MovieViewer />} />
       </Routes>
     </Router>
   </React.StrictMode>,

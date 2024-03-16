@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { IMAGE_URL } from "../App";
 import Casts from "../components/Casts";
 import Trailers from "../components/Trailers";
@@ -9,12 +9,15 @@ import Writers from "../components/Writers";
 import Directors from "../components/Directors";
 import ErrorImg from "../picture/error_img_cast.jpg";
 import Header from "../components/Header";
+import { getVideo } from "../config/axios";
+import { FaPlay } from "react-icons/fa6";
 
 const MovieInfoComponent = () => {
   const [movieInfo, setMovieInfo] = useState();
   const [movieCast, setMovieCast] = useState();
+  const [slug, setSlug] = useState();
   const { movieId } = useParams();
-
+  
   useEffect(() => {
     axios
       .get(`/movie/${movieId}?&append_to_response=videos`)
@@ -26,6 +29,20 @@ const MovieInfoComponent = () => {
       .get(`/movie/${movieId}/casts`)
       .then((response) => setMovieCast(response.data));
   }, [movieId]);
+
+  useEffect(() => {
+    getVideo(`/v1/api/tim-kiem?keyword=${movieInfo?.original_title}`)
+      .then(res => {
+        if (!res) return;
+        const resultSearch = res?.data?.data?.items;
+        if (resultSearch.length > 0) {
+          const result = resultSearch.filter(item => item.origin_name === movieInfo?.original_title)
+          if (result.length > 0) {
+            setSlug(result[0].slug)
+          }
+        }
+      })
+  }, [movieInfo])
 
   return (
     <React.Fragment>
@@ -41,15 +58,24 @@ const MovieInfoComponent = () => {
       {movieInfo ? (
         <>
           <div className="contentSection">
-            <img
-              id="poster"
-              src={
-                movieInfo?.poster_path
-                  ? IMAGE_URL + movieInfo?.poster_path
-                  : ErrorImg
+            <div className="posterContainer">
+              <img
+                id="poster"
+                src={
+                  movieInfo?.poster_path
+                    ? IMAGE_URL + movieInfo?.poster_path
+                    : ErrorImg
+                }
+                alt=""
+              />
+              {slug &&
+                (
+                  <Link to={`/view/${slug}`} className="page-link">
+                    <button className="buttonView" ><FaPlay />Xem phim</button>
+                  </Link>
+                )
               }
-              alt=""
-            />
+            </div>
             <div className="infoColumn">
               <div id="movieName">{movieInfo?.original_title}</div>
 
